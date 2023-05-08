@@ -8,7 +8,9 @@
         <SwitchGroup>
             <div class="tw-flex tw-items-center">
                 <Switch
+                    :disabled="currentlyIsReadonly"
                     v-model="value"
+                    @click="toggle"
                     :class="checked ? 'tw-bg-green-500' : 'tw-bg-gray-200 tw-dark:tw-bg-gray-900'"
                     class="tw-relative tw-inline-flex tw-h-6 tw-w-12 tw-items-center tw-rounded-full tw-shrink-0 tw-cursor-pointer tw-border-2 tw-border-transparent tw-transition-colors tw-duration-200 tw-ease-in-out tw-focus:tw-outline-none tw-focus-visible:tw-ring-2 tw-focus-visible:tw-ring-white tw-focus-visible:tw-ring-opacity-75"
                 >
@@ -37,7 +39,7 @@ export default {
 
   methods: {
     setInitialValue() {
-      this.value = this.currentField.value || this.value
+      this.value = this.currentField.value ?? this.value
     },
 
     fill(formData) {
@@ -76,6 +78,10 @@ export default {
 
     falseLabelValue(){
         return (this.field.false_label != undefined) ? this.field.false_label : 'False'
+    },
+
+    isReadonly(){
+        return (this.field.readonly != undefined) ? this.field.readonly : 'False'
     },
   },
 }
