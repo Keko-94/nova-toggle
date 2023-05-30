@@ -4,6 +4,7 @@ namespace Davidpiesse\NovaToggle;
 
 use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Fields\Field;
+use Laravel\Nova\Http\Requests\NovaRequest;
 
 class Toggle extends Boolean
 {
@@ -57,5 +58,10 @@ class Toggle extends Boolean
             'show_true_label' => false,
             'show_false_label' => true,
         ]);
+    }
+
+    protected function resolveDefaultValue(NovaRequest $request)
+    {
+        return Field::resolveDefaultValue($request);
     }
 }
