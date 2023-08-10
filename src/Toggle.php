@@ -60,7 +60,7 @@ class Toggle extends Boolean
         ]);
     }
 
-    protected function resolveDefaultValue(NovaRequest $request)
+    public function resolveDefaultValue(NovaRequest $request)
     {
         return Field::resolveDefaultValue($request);
     }
